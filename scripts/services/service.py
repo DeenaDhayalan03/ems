@@ -1,15 +1,11 @@
 from fastapi import APIRouter
 from scripts.constants.api import Endpoints
 from scripts.handlers.handler import *
-from scripts.logging.logger import get_logger
 from scripts.constants.app_constants import AppConstants
 from scripts.model.model import *
 from scripts.handlers.handler import employee_handler
 
-
 router = APIRouter()
-logger = get_logger()
-
 
 @router.post(Endpoints.api_create_emp)
 def create_employee_api(employee: EmployeeCreate):
@@ -58,7 +54,6 @@ def read_employee_api(
         return {"message": AppConstants.SUCCESS_MESSAGE, "data": response}
     else:
         raise HTTPException(status_code=404, detail=AppConstants.EMPLOYEE_NOT_FOUND)
-
 
 
 @router.put(Endpoints.api_update_emp)
